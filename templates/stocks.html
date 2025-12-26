@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block title %}Stocks{% endblock %}
+{% block content %}
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>All Stocks</h2>
+    <a href="{{ url_for('main.create_stock') }}" class="btn btn-success">
+      + Add Stock
+    </a>
+  </div>
+
+  {% if stocks %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>Company</th>
+          <th>Market</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for s in stocks %}
+          <tr>
+            <td>{{ s.symbol }}</td>
+            <td>{{ s.company_name }}</td>
+            <td>{{ s.market }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="text-muted">No stocks added yet.</p>
+  {% endif %}
+{% endblock %}

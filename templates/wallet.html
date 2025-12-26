@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% block title %}Your Wallet{% endblock %}
+{% block content %}
+  <h2>Your Wallet</h2>
+  <p><strong>Balance:</strong> ${{ '%.2f'|format(wallet.balance) }}</p>
+
+  <form method="POST" class="mb-5">
+    {{ form.hidden_tag() }}
+    <div class="row g-3 align-items-end">
+      <div class="col-md-4">
+        {{ form.amount.label(class="form-label") }}
+        {{ form.amount(class="form-control", step="any") }}
+      </div>
+      <div class="col-md-4">
+        {{ form.action.label(class="form-label") }}
+        {{ form.action(class="form-select") }}
+      </div>
+      <div class="col-md-4">
+        {{ form.submit(class="btn btn-primary") }}
+      </div>
+    </div>
+  </form>
+
+  <a href="{{ url_for('main.portfolios') }}" class="btn btn-secondary">
+    ← Back to Portfolios
+  </a>
+{% endblock %}

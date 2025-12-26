@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block title %}Your Portfolios{% endblock %}
+{% block content %}
+  <h2>Your Portfolios</h2>
+
+  <form method="POST" class="mb-4">
+    {{ form.hidden_tag() }}
+    <div class="input-group">
+      {{ form.name(class="form-control", placeholder="New Portfolio Name") }}
+      <button class="btn btn-success">{{ form.submit.label.text }}</button>
+    </div>
+  </form>
+
+  {% if portfolios %}
+    <ul class="list-group">
+      {% for p in portfolios %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <a href="{{ url_for('main.holdings', portfolio_id=p.portfolio_id) }}">
+            {{ p.name }}
+          </a>
+          <small class="text-muted">{{ p.created_at.strftime('%Y-%m-%d') }}</small>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-muted">You haven't created any portfolios yet.</p>
+  {% endif %}
+{% endblock %}

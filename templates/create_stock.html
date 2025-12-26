@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block title %}Add Stock{% endblock %}
+{% block content %}
+  <h2>Add New Stock</h2>
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+      {{ form.symbol.label(class="form-label") }}
+      {{ form.symbol(class="form-control") }}
+    </div>
+    <div class="mb-3">
+      {{ form.company_name.label(class="form-label") }}
+      {{ form.company_name(class="form-control") }}
+    </div>
+    <div class="mb-3">
+      {{ form.market.label(class="form-label") }}
+      {{ form.market(class="form-control") }}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+  </form>
+{% endblock %}

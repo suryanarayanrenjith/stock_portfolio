@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+{% block title %}Holdings{% endblock %}
+{% block content %}
+  {% if holdings %}
+    <h2>Holdings in "{{ holdings[0].portfolio.name }}"</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>Company</th>
+          <th>Market</th>
+          <th>Quantity</th>
+          <th>Avg. Price</th>
+          <th>Current Price</th>    
+          <th>Current Value</th>    
+        </tr>
+      </thead>
+      <tbody>
+        {% for h in holdings %}
+        <tr>
+          <td>{{ h.stock.symbol }}</td>
+          <td>{{ h.stock.company_name }}</td>
+          <td>{{ h.stock.market }}</td>
+          <td>{{ '%.2f'|format(h.total_quantity) }}</td>
+          <td>${{ '%.2f'|format(h.average_price) }}</td>
+          <td>${{ '%.2f'|format(h.current_price) }}</td>
+          <td>${{ '%.2f'|format(h.current_value) }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="text-muted">No holdings yet. Record a transaction to get started.</p>
+  {% endif %}
+  <a href="{{ url_for('main.portfolios') }}" class="btn btn-secondary mt-3">
+    ← Back to Portfolios
+  </a>
+{% endblock %}

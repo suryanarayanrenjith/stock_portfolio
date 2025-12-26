@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600&display=swap');
+
+:root {
+  --bg         : #1e1e2e;
+  --panel      : #2e2e3e;
+  --text       : #d0d0d0;
+  --text-muted : #8a8a9f;
+  --accent     : #6272a4;
+  --border     : #3e3e5e;
+  --transition : 0.2s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: color var(--transition), background var(--transition), border-color var(--transition);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Exo 2', sans-serif;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--panel);
+  border-radius: 8px;
+}
+
+h1, h2 {
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.navbar {
+  background: var(--panel) !important;
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar-brand {
+  font-weight: 600;
+  color: var(--accent) !important;
+}
+
+.nav-link {
+  color: var(--text) !important;
+}
+
+.nav-link:hover {
+  color: var(--accent) !important;
+}
+
+.btn {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 4px;
+  padding: 0.2rem 1rem;
+  font-weight: 400;
+}
+
+.btn:hover {
+  background: lighten(var(--accent), 10%);
+  color: var(--bg);
+}
+
+.form-control,
+.form-select {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+}
+
+.form-control:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 4px rgba(98,114,164,0.5);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+  margin-bottom: 1.5rem;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.table thead th {
+  background: var(--panel);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.table tbody tr:hover {
+  background: rgba(98,114,164,0.1);
+}
+
+.alert {
+  background: var(--panel);
+  border-left: 4px solid var(--accent);
+  color: var(--text);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.text-muted {
+  color: var(--text-muted) !important;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .container { padding: 1rem; margin: 1rem; }
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.25rem; }
+}

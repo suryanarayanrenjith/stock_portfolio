@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+{% block title %}Transactions{% endblock %}
+{% block content %}
+  <h2>Record a Transaction</h2>
+  <form method="POST" class="mb-5">
+    {{ form.hidden_tag() }}
+    <div class="row g-3">
+      <div class="col-md-3">
+        {{ form.portfolio.label(class="form-label") }}
+        {{ form.portfolio(class="form-select") }}
+      </div>
+      <div class="col-md-3">
+        {{ form.stock.label(class="form-label") }}
+        {{ form.stock(class="form-select") }}
+      </div>
+      <div class="col-md-2">
+        {{ form.type.label(class="form-label") }}
+        {{ form.type(class="form-select") }}
+      </div>
+      <div class="col-md-2">
+        {{ form.quantity.label(class="form-label") }}
+        {{ form.quantity(class="form-control", step="any") }}
+      </div>
+      <div class="col-md-2">
+        {{ form.price.label(class="form-label") }}
+        {{ form.price(class="form-control", step="any") }}
+      </div>
+    </div>
+    <div class="mt-3">
+      {{ form.submit(class="btn btn-primary") }}
+    </div>
+  </form>
+
+  <h2>Recent Transactions</h2>
+  {% if transactions %}
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Portfolio</th>
+      <th>Stock</th>
+      <th>Company</th>
+      <th>Type</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for t in transactions %}
+    <tr>
+      <td>{{ t.transaction_date.strftime('%Y-%m-%d') }}</td>
+      <td>{{ t.holding.portfolio.name }}</td>
+      <td>{{ t.holding.stock.symbol }}</td>
+      <td>{{ t.holding.stock.company_name }}</td>
+      <td>{{ t.type|capitalize }}</td>
+      <td>{{ '%.2f'|format(t.quantity) }}</td>
+      <td>{{ '%.2f'|format(t.price) }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+  {% else %}
+    <p class="text-muted">No transactions recorded yet.</p>
+  {% endif %}
+{% endblock %}
